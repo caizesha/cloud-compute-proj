@@ -42,6 +42,9 @@ angular.module('todoController', [])
                 $scope.user = {}; // clear the form so our user is ready to enter another
                 // $scope.todos = data; // assign our new list of todos
               });
+          console.log($scope.user.account);
+          console.log($scope.user.password);
+          console.log($scope.user.name);
         }
       };
       // DELETE ==================================================================
