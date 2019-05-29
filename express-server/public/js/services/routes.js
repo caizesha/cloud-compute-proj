@@ -6,7 +6,7 @@ angular.module('routeService', [])
           return $http.get('/api/accounts');
         },
         create: (user) => {
-          return $http.post('/api/accounts');
+          return $http.post('/api/accounts', user);
         },
       };
     }]);
