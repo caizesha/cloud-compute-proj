@@ -33,7 +33,6 @@ app.controller('mainController', ['$scope', '$http', 'Todos', function($scope, $
           $scope.loading = false;
           $scope.formData = {};
         });
-    $scope.formData = {};
   };
   // 定义了点击注册按钮的动作
   $scope.register = function() {
