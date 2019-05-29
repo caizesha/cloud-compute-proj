@@ -19,11 +19,11 @@ app.controller('mainController', ['$scope', '$http', 'Todos', function($scope, $
     //         // $scope.todos = data; // assign our new list of todos
     //       });
     // }
-    if ($scope.user.account == '') {
+    if ($scope.user.account == undefined) {
       alert('用户名不能为空！');
       return;
     }
-    if ($scope.user.passwd == '') {
+    if ($scope.user.passwd == undefined) {
       alert('密码不能为空！');
       return;
     }
