@@ -3,6 +3,7 @@ const app = angular.module('bankController', []);
 // inject the Todo service factory into our controller
 app.controller('mainController', ['$scope', '$http', 'Todos', function($scope, $http, Todos) {
   $scope.formData = {};
+  $scope.loading = false;
   // 定义了点击登录按钮的动作
   $scope.login = function() {
     if ($scope.user.account == undefined) {
