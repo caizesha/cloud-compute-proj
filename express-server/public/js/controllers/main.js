@@ -1,11 +1,11 @@
 /* eslint-disable max-len */
 const app = angular.module('bankController', []);
 // inject the Todo service factory into our controller
-app.controller('mainController', ['$scope', '$http', 'Todos', function($scope, $http, Todos) {
+app.controller('mainController', ['$scope', '$http', 'Accounts', ($scope, $http, Accounts) => {
   $scope.formData = {};
   $scope.loading = false;
   // 定义了点击登录按钮的动作
-  $scope.login = function() {
+  $scope.login = () => {
     if ($scope.user.account == undefined) {
       alert('用户名不能为空！');
       return;
