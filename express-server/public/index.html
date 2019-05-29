@@ -29,7 +29,6 @@
 		}
 	</style>
 	<!-- SPELLS -->
-	<script src="//cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script><!-- load angular -->
 	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
 	<script src="js/services/todos.js"></script> <!-- load our todo service -->
 	<script src="js/core.js"></script> <!-- load our main application -->
@@ -62,19 +61,14 @@
 				<form>
 					<div class="form-group">
 						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="account"
-							ng-model="user.account">
-						<input type="password" class="form-control text-center " placeholder="password"
-							ng-model="user.password">
-						<input type="text" class="form-control input-lg text-center" placeholder="name"
-							ng-model="user.name">
+						<input type="text" class="form-control input-lg text-center" placeholder="account" ng-model="user.account">
+						<input type="password" class="form-control text-center " placeholder="password" ng-model="user.password">
+						<input type="text" class="form-control input-lg text-center" placeholder="name" ng-model="user.name">
 						<button type="submit" class="btn btn-primary btn-lg" ng-click="register()">register</button>
 					</div>
 					<!-- createToDo() WILL CREATE NEW TODOS -->
-					<input type="text" class="form-control input-lg text-center" placeholder="account"
-						ng-model="user.account">
-					<input type="password" class="form-control text-center " placeholder="password"
-						ng-model="user.password">
+					<input type="text" class="form-control input-lg text-center" placeholder="account" ng-model="user.account">
+					<input type="password" class="form-control text-center " placeholder="password" ng-model="user.password">
 					<button type="submit" class="btn btn-primary btn-lg" ng-click="login()">login</button>
 				</form>
 			</div>
@@ -83,6 +77,7 @@
 			<p>With ❤ from <a href="https://www.ibm.com/linuxone">LinuxONE</a></p>
 		</div>
 	</div>
+	<script src="//cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script><!-- load angular -->
 </body>
 
 </html>
