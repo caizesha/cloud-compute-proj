@@ -1,3 +1,4 @@
+/* eslint-disable */
 const Account = require('./models/account');
 
 /**
@@ -26,7 +27,7 @@ module.exports = (app) => {
       accountName: req.body.account,
       passwd: req.body.passwd,
       nickName: req.body.name,
-      balance: 0.0,
+      balance: 0.0
     }, (err, account) => {
       if (err) {
         res.send(err);
