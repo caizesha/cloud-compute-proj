@@ -14,6 +14,8 @@ app.controller('mainController', ['$scope', '$http', 'Accounts', ($scope, $http,
       alert('密码不能为空！');
       return;
     }
+    console.log($scope.user.account);
+    console.log($scope.user.passwd);
     $scope.loading = true;
     Accounts.create($scope.user)
         .success((data) => {
