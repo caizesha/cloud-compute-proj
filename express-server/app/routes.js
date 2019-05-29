@@ -36,6 +36,7 @@ module.exports = (app) => {
   });
 
   app.get('*', (req, res) => {
+    console.log(__dirname);
     res.sendFile(__dirname + 'public/index.html');
   });
 };
