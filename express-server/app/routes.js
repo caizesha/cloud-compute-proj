@@ -36,6 +36,6 @@ module.exports = (app) => {
   });
 
   app.get('*', (req, res) => {
-    res.sendFild(__dirname + 'public/index.html');
+    res.sendFile(__dirname + 'public/index.html');
   });
 };
