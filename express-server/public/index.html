@@ -1,6 +1,6 @@
 <!doctype html>
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="meanTodo">
+<html ng-app="bank account management system">
 
 <head>
 	<!-- META -->
@@ -44,12 +44,6 @@
 		<!-- TODO LIST -->
 		<div id="todo-list" class="row">
 			<div class="col-sm-4 col-sm-offset-4">
-				<!-- LOOP OVER THE TODOS IN $scope.todos -->
-				<div class="checkbox" ng-repeat="todo in todos">
-					<label>
-						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
-					</label>
-				</div>
 				<p class="text-center" ng-show="loading">
 					<span class="fa fa-spinner fa-spin fa-3x"></span>
 				</p>
@@ -62,13 +56,13 @@
 					<div class="form-group">
 						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
 						<input type="text" class="form-control input-lg text-center" placeholder="account" ng-model="user.account">
-						<input type="password" class="form-control text-center" placeholder="password" ng-model="user.password">
+						<input type="password" class="form-control text-center" placeholder="password" ng-model="user.passwd">
 						<input type="text" class="form-control input-lg text-center" placeholder="name" ng-model="user.name">
 						<button type="submit" class="btn btn-primary btn-lg" ng-click="register()">register</button>
 					</div>
 					<!-- createToDo() WILL CREATE NEW TODOS -->
 					<input type="text" class="form-control input-lg text-center" placeholder="account" ng-model="user.account">
-					<input type="password" class="form-control text-center" placeholder="password" ng-model="user.password">
+					<input type="password" class="form-control text-center" placeholder="password" ng-model="user.passwd">
 					<button type="submit" class="btn btn-primary btn-lg" ng-click="login()">login</button>
 				</form>
 			</div>
