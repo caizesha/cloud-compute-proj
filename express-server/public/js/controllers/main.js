@@ -27,6 +27,12 @@ app.controller('mainController', ['$scope', '$http', 'Todos', function($scope, $
       alert('密码不能为空！');
       return;
     }
+    $scope.loading = true;
+    Accounts.create($scope.user)
+        .success((data) => {
+          $scope.loading = false;
+          $scope.formData = {};
+        });
   };
   // 定义了点击注册按钮的动作
   $scope.register = function() {
