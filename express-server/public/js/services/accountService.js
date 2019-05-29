@@ -1,5 +1,4 @@
-// 这才是真正的routes，app文件夹里面那个命名不规范的
-angular.module('routeService', [])
+angular.module('accountService', [])
     .factory('Accounts', ['$http', ($http) => {
       return {
         get: () => {
