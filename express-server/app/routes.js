@@ -6,7 +6,7 @@ function getTodos(res) {
         if (err) {
             res.send(err);
         }
-        res.json(todos); // return all todos in JSON format
+        res.json(todos); 
     });
 };
 
@@ -27,6 +27,7 @@ function updateBalance(account,balance){
     var set={$set:{"balance":balance}};
     Todo.updateOne(whereStr,set,function(){});
 }
+
 module.exports = function (app) {
     app.get('/api/todos', function (req, res) {
         // use mongoose to get all todos in the database
