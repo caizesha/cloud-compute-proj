@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="scutbank">
+<html ng-app="meanTodo">
 <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script><!-- 加载angular -->
-<!-- <script src="js/controllers/main.js"></script> 加载controller -->
-<script src="js/services/accountService.js"></script> <!-- 加载路由 -->
+<script src="js/controllers/main.js"></script> <!-- 加载controller -->
+<script src="js/services/todos.js"></script> <!-- 加载路由 -->
 <script src="js/core.js"></script> <!-- 加载main application -->
 
 <head>
@@ -12,6 +12,8 @@
     <title>SCUT Banks</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> -->
     <style>
         html {
             overflow-y: scroll;
@@ -161,9 +163,7 @@
         <table class="account">
             <tr>
                 <!-- 登录账户后账户名在这里展示 -->
-                <td>欢迎您，{{accountShow}}</td>
-                <!-- 登出账户按钮 -->
-                <td><button type="submit" class="btn btn-primary btn-lg" ng-click="logout()">Log out</button></td>
+                <td>欢迎您，{{iuser.name}}</td>
             </tr>
         </table>
     </div>
@@ -171,32 +171,39 @@
         <hr /> <!-- 分割线 -->
         <div class="left">
             <div id="left-top">
-                <tr><input type="text" class="field form-control text-center" placeholder="account" ng-model="account"></tr>
-                <tr><input type="password" class="field form-control text-center" placeholder="password" ng-model="password"></tr>
-                <tr><input type="text" class="field form-control text-center" placeholder="nickname" ng-model="nickname"></tr>
+                <tr><input type="text" class="field form-control text-center" placeholder="账户" ng-model="user.account"></tr>
+                <tr><input type="password" class="field form-control text-center" placeholder="密码" ng-model="user.password"></tr>
+                <tr><input type="text" class="field form-control text-center" placeholder="姓名" ng-model="user.name"></tr>
                 <button type="submit" class="btn btn-primary btn-lg" ng-click="register()">Regist</button>
             </div>
             <div id="left-bottom">
                     <table>
-                        <tr><input type="text" class="field form-control text-center" placeholder="account" ng-model="account"></tr>
-                        <tr><input type="password" class="field form-control text-center" placeholder="password" ng-model="password"></tr>
+                        <tr><input type="text" class="field form-control text-center" placeholder="账户" ng-model="login.account"></tr>
+                        <tr><input type="password" class="field form-control text-center" placeholder="密码" ng-model="login.password"></tr>
                     </table>
-                    <button type="submit" class="btn btn-primary btn-lg" ng-click="login()">Login</button>
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="user_login()">Login</button>
             </div>
         </div>
         <div class="right">
             <div id="right-top">
                 <div id="head1"><h>账户余额</h></div>
                 <table>
-                    <td><label for="quantity">您的余额为： {{balanceShow}}</td>
+                    <td><label for="quantity">您的余额为： {{iuser.balance}}</td>
                 </table>
             </div>
             <div id="right-middle">
                 <div id="head2"><h>存钱</h></div>
                 <table>
+                    <tr>
                     <td><label for="quantity">请输入存入的金额：</label></td>
-                    <td><input type="number" class="field form-control text-center" placeholder="amount" ng-model="saveAmount"></td>
-                    <td><button type="submit" class="btn btn-primary btn-md" ng-click="saveMoney()">Submit</button></td>
+                    <td><input type="number" class="field form-control text-center" placeholder="输入存款金额" ng-model="deposit_money"></td>
+                    <td><button type="submit" class="btn btn-primary btn-md" ng-click="deposit()">存入</button></td>
+                    </tr>
+                    <tr>
+                    <td><label for="quantity">请输入取出的金额：</label></td>
+                    <td><input type="number" class="field form-control text-center" placeholder="输入取出金额" ng-model="withdraw_money"></td>
+                    <td><button type="submit" class="btn btn-primary btn-md" ng-click="withdraw()">取出</button></td>
+                    </tr>
                 </table>
             </div>
             <div id="right-bottom">
@@ -204,12 +211,12 @@
                 <table>
                     <tr>
                         <td><label for="quantity">转账金额：</label></td>
-                        <td><input type="number" class="field form-control text-center" placeholder="amount" ng-model="tranAmount"></td>
+                        <td><input type="number" class="field form-control text-center" placeholder="输入转账金额" ng-model="trans_money"></td>
                     </tr>
                     <tr>
                         <td><label for="quantity" id="transfer">转入账号：</label></td>
-                        <td><input type="text" class="field form-control text-center" placeholder="account" ng-model="tranAccount"></td>
-                        <td><button type="submit" class="btn btn-primary btn-md" ng-click="tranMoney()">Submit</button></td>
+                        <td><input type="text" class="field form-control text-center" placeholder="输入转账账户" ng-model="trans_account"></td>
+                        <td><button type="submit" class="btn btn-primary btn-md" ng-click="trans()">确定</button></td>
                     </tr>
                 </table>
             </div>
@@ -217,42 +224,5 @@
     </div>
     <div id="footer"><p>Made by Team Not Right Without Teamname.</a></p></div>
 </body>
-
-<script>
-    //主逻辑
-    const app=angular.module('scutbank',[]);
-    app.controller('mainController',($scope,$http)=>{
-        //部分展示信息初始化
-        $scope.accountShow='请登录';
-        $scope.balanceShow='暂无信息，请登录';
-
-        //Regist按钮动作
-        $scope.regist=()=>{
-
-        }
-
-        //Login按钮动作
-        $scope.login=()=>{
-            $scope.accountShow = '有反应';
-            $scope.balanceShow = '有反应';
-        }
-
-        //Log out按钮动作
-        $scope.logout=()=>{
-            $scope.accountShow = '请登录';
-            $scope.balanceShow = '暂无信息，请登录';
-        }
-
-        //存钱按钮动作
-        $scope.saveMoney=()=>{
-
-        }
-
-        //转账按钮动作
-        $scope.tranMoney=()=>{
-
-        }
-    });
-</script>
 
 </html>

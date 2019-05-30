@@ -1,69 +1,96 @@
-/* eslint-disable */
-const Account = require('./models/account');
+var Todo = require('./models/todo');
 
-/**
- * @description 得到所有账号资料
- * @author JHSeng
- * @date 2019-05-29
- * @param {*} res
- */
-function getAccounts(res) {
-  Account.find((err, accounts) => {
-    if (err) {
-      res.send(err);
-    }
-    res.json(accounts);
-  });
+function getTodos(res) {
+    Todo.find(function (err, todos) {
+
+        // if there is an error retrieving, send the error. nothing after res.send(err) will execute
+        if (err) {
+            res.send(err);
+        }
+
+        res.json(todos); // return all todos in JSON format
+    });
+};
+// 条件查询,通过用户名来查询
+function getAccount(account,res){
+    var whereStr={"account":account};
+    Todo.find(whereStr,function(err,todos){
+        if(err){
+            res.send(err);
+        }
+        res.json(todos);
+    })
 }
 
-function isExist(accountName, passwd) {
-  //查询账户是否在数据库中
+//更新存款
+function updateBalance(account,balance){
+    var whereStr={"account":account};
+    var set={$set:{"balance":balance}};
+    Todo.updateOne(whereStr,set,function(){});
 }
+module.exports = function (app) {
 
-module.exports = (app) => {
-  // 得到所有账户资料
-  app.get('/api/getAccounts', (req, res) => {
-    getAccounts(res);
-  });
-  // 创建账户
-  app.post('/api/regist', (req, res) => {
-    Account.create({
-      accountName: req.body.account,
-      passwd: req.body.passwd,
-      nickName: req.body.name,
-      balance: 0.0
-    }, (err, account) => {
-      if (err)
-        res.send(err);
-      getAccounts(res);
+    // api ---------------------------------------------------------------------
+    // get all todos
+    app.get('/api/todos', function (req, res) {
+        // use mongoose to get all todos in the database
+        getTodos(res);
     });
-  });
-  //登录账户
-  app.post('/api/login', (req, res) => {
-    Account.login({
-      accountName: req.body.account,
-      passwd: req.body.passwd,
-    }, (err, account) => {
-      if (err)
-        res.send(err);
-      //检查账户是否在数据库中
-      if (isExist(accountName, passwd)) {
 
-      } else return;
+    // create todo and send back all todos after creation
+    app.post('/api/todos', function (req, res) {
+
+        // 注册
+        if((req.body.name!=undefined)&&(req.body.account!=undefined)&&(req.body.password!=undefined)){
+        Todo.create({
+            account: req.body.account,
+            password: req.body.password,
+            name:req.body.name,
+            done: false
+        }, function (err, todo) {
+            if (err)
+                res.send(err);
+
+            // get and return all the todos after you create another
+            getTodos(res);
+        });}
+        //转账
+        else if((req.body.trans_money!=undefined)&&(req.body.trans_account!=undefined)){
+            //updateBalance(req.body.account,req.body.balance);
+            updateBalance(req.body.account,req.body.balance);
+            var result={"account":req.body.trans_account};
+            Todo.findOne(result,function(err,todo){
+
+                updateBalance(todo.account,todo.balance+req.body.trans_money);
+
+            });
+            getAccount(req.body.account,res);
+       
+        }
+        else if((req.body.account!=undefined)&&(req.body.password!=undefined)){
+            getAccount(req.body.account,res);
+        }
+        else if((req.body.balance!=undefined)&&(req.body.account!=undefined)){
+            updateBalance(req.body.account,req.body.balance);
+            getAccount(req.body.account,res);
+        }
+
     });
-  });
 
-  app.post('/api/trans', (req, res) => {
-    Account.trans({
-      tranMoney: req.body.tranMoney
-    }, (err) => {
-      if (err)
-        res.send(err);
+    // delete a todo
+    app.delete('/api/todos/:todo_id', function (req, res) {
+        Todo.remove({
+            _id: req.params.todo_id
+        }, function (err, todo) {
+            if (err)
+                res.send(err);
 
+            getTodos(res);
+        });
     });
-  });
 
-  // app.get('*', (req, res) => {
-  //   res.sendFile(__dirname + 'public/index.html');
-  // });
+    // application -------------------------------------------------------------
+    app.get('*', function (req, res) {
+        res.sendFile(__dirname + '/public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+    });
 };
