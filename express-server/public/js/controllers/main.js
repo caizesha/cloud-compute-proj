@@ -21,22 +21,6 @@ angular.module('todoController', [])
 					});
 			}
 		};
-		//用户点击登出账户
-		// $scope.exit=function(){
-		// 	if ($scope.iuser!=undefined){
-		// 		var dataForm = {
-		// 			"account": undefined,
-		// 			"password": undefined,
-		// 			"balance": 0
-		// 		}
-		// 		Todos.create(dataForm)
-		// 			.success(function (data) {
-		// 				$scope.iuser = data[0];
-		// 				$scope.trans_money = undefined; // clear the form so our user is ready to enter another
-		// 				$scope.trans_account = undefined;
-		// 			});	
-		// 	}
-		// };
 		//注册
 		$scope.register = function() {
 			if ($scope.user.account != undefined) {
@@ -56,7 +40,7 @@ angular.module('todoController', [])
 		};
 		//存款
 		$scope.deposit = function() {
-			if ($scope.deposit_money != undefined && $scope.) {
+			if ($scope.deposit_money != undefined) {
 				if ($scope.deposit_money<0){
 					alert("金额不能为负数!");
 					return;
