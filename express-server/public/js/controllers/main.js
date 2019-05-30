@@ -18,6 +18,8 @@ angular.module('todoController', [])
 						$scope.login = {}; 
 						$scope.User= data;
 						$scope.iuser=data[0];
+					}).error(function(data){
+						alert('不存在此用户或密码不正确!');
 					});
 			}
 		};
@@ -89,7 +91,7 @@ angular.module('todoController', [])
 			if (($scope.trans_money!=undefined)&&($scope.trans_account!=undefined)) {
 				if ($scope.trans_money > $scope.iuser.balance) { alert("余额不足"); }
 				if ($scope.trans_money<0){
-					alert('金额不能为负数!');
+					alert('金额不能为负数!')
 				}
 				else {
 					$scope.loading = true;
