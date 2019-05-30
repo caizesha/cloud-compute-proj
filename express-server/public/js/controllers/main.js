@@ -25,6 +25,12 @@ angular.module('todoController', [])
 		$scope.register = function() {
 			if ($scope.user.account != undefined) {
 				$scope.loading = true;
+				if ($scope.user.password!=$scope.user.password2){
+					alert('两次输入密码不一致!');
+					$scope.user.password='';
+					$scope.user.password2='';
+					focus($scope.user.password);
+				}
 				Todos.create($scope.user)
 					.success(function(data) {
 						$scope.loading = false;
@@ -35,6 +41,10 @@ angular.module('todoController', [])
 		//存款
 		$scope.deposit = function() {
 			if ($scope.deposit_money != undefined) {
+				if ($scope.deposit_money<0){
+					alert("金额不能为负数!");
+					return;
+				}
 				$scope.loading = true;
 				var dataForm={
 					"account":$scope.iuser.account,
