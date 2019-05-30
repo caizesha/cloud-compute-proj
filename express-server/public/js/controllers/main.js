@@ -52,7 +52,14 @@ angular.module('todoController', [])
 		$scope.withdraw = function() {
 			if ($scope.withdraw_money != undefined) {
 				$scope.loading = true;
-				if($scope.withdraw_money>$scope.iuser.balance) {alert("余额不足")}
+				if($scope.withdraw_money>$scope.iuser.balance) {
+					alert("余额不足!");
+					return;
+				}
+				if ($scope.withdraw_money<0){
+					alert("金额不能为负数!");
+					return;
+				}
 				else{
 				var dataForm={
 					"account":$scope.iuser.account,
