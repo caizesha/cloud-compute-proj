@@ -23,21 +23,19 @@ angular.module('todoController', [])
 		};
 		//用户点击登出账户
 		$scope.exit=function(){
-			if ($scope.iuser==undefined){
-				alert('兄弟，你还没登录呢');
-				return;
+			if ($scope.iuser!=undefined){
+				var dataForm = {
+					"account": undefined,
+					"password": undefined,
+					"balance": 0
+				}
+				Todos.create(dataForm)
+					.success(function (data) {
+						$scope.iuser = data[0];
+						$scope.trans_money = undefined; // clear the form so our user is ready to enter another
+						$scope.trans_account = undefined;
+					});	
 			}
-			var dataForm = {
-				"account": undefined,
-				"password": undefined,
-				"balance": 0
-			}
-			Todos.create(dataForm)
-				.success(function (data) {
-					$scope.iuser = data[0];
-					$scope.trans_money = undefined; // clear the form so our user is ready to enter another
-					$scope.trans_account = undefined;
-				});
 		}
 		//注册
 		$scope.register = function() {
