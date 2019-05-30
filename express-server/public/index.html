@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <!-- ASSIGN OUR ANGULAR MODULE -->
 <html ng-app="scutbank">
-<script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script><!-- load angular -->
+<script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script><!-- 加载angular -->
+<!-- <script src="js/controllers/main.js"></script> 加载controller -->
+<script src="js/services/accountService.js"></script> <!-- 加载路由 -->
+<script src="js/core.js"></script> <!-- 加载main application -->
 
 <head>
     <meta charset="utf-8">
@@ -44,15 +47,6 @@
             width: 300px;
             margin-top: 30px;
             margin-right: 60px;
-        }
-
-        #todo-list {
-            margin-bottom: 30px;
-        }
-
-        #todo-form {
-            margin-bottom: 20px;
-            margin-top: 0;
         }
 
         .left {
@@ -162,112 +156,103 @@
 </head>
 
 <body ng-controller="mainController">
-    <script src="js/controllers/main.js"></script> <!-- load up our controller -->
-    <script src="js/services/accountService.js"></script> <!-- load our todo service -->
-    <script src="js/core.js"></script> <!-- load our main application -->
-
     <div id="header">
         <div class="logo">Bank of SCUT</div>
         <table class="account">
             <tr>
-                //登录账户后在这里展示
-                <td>{{accountShow}}</td>
-                <td>
-                    <button type="submit" class="btn btn-primary btn-lg" ng-click="close()">exit</button>
-                </td>
+                <!-- 登录账户后账户名在这里展示 -->
+                <td>欢迎您，{{accountShow}}</td>
+                <!-- 登出账户按钮 -->
+                <td><button type="submit" class="btn btn-primary btn-lg" ng-click="logout()">Log out</button></td>
             </tr>
         </table>
     </div>
-    <div class="container" id="todo-form">
-        <hr />
+    <div class="container">
+        <hr /> <!-- 分割线 -->
         <div class="left">
             <div id="left-top">
-                <form>
-                    <table>
-                        <tr><input type="text" class="field form-control text-center" placeholder="account"
-                                ng-model="account"></tr>
-                        <tr><input type="password" class="field form-control text-center" placeholder="password"
-                                ng-model="password"></tr>
-                        <tr><input type="text" class="field form-control text-center" placeholder="name"
-                                ng-model="name"></tr>
-                    </table>
-                    <button type="submit" class="btn btn-primary btn-lg" ng-click="register()">register
-                    </button>
-                </form>
+                <tr><input type="text" class="field form-control text-center" placeholder="account" ng-model="account"></tr>
+                <tr><input type="password" class="field form-control text-center" placeholder="password" ng-model="password"></tr>
+                <tr><input type="text" class="field form-control text-center" placeholder="nickname" ng-model="nickname"></tr>
+                <button type="submit" class="btn btn-primary btn-lg" ng-click="register()">Regist</button>
             </div>
             <div id="left-bottom">
-                <form>
                     <table>
-                        <tr><input type="text" class="field form-control text-center" placeholder="account"
-                                ng-model="account"></tr>
-                        <tr><input type="password" class="field form-control text-center" placeholder="password"
-                                ng-model="password"></tr>
+                        <tr><input type="text" class="field form-control text-center" placeholder="account" ng-model="account"></tr>
+                        <tr><input type="password" class="field form-control text-center" placeholder="password" ng-model="password"></tr>
                     </table>
-                    <button type="submit" class="btn btn-primary btn-lg" ng-click="login()">login</button>
-                </form>
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="login()">Login</button>
             </div>
         </div>
         <div class="right">
             <div id="right-top">
-                <form>
-                    <div id="head1">
-                        <h>查询余额</h>
-                    </div>
-                    <table>
-                        <td><label for="quantity">您的余额为：</label></td>
-                        <td><input type="text" class="field form-control text-center" value="{{balance}}" /></td>
-                        <td>
-                            <button type="submit" class="btn btn-primary btn-md" ng-click="">query</button>
-                        </td>
-                    </table>
-                </form>
+                <div id="head1"><h>账户余额</h></div>
+                <table>
+                    <td><label for="quantity">您的余额为： {{balanceShow}}</td>
+                </table>
             </div>
             <div id="right-middle">
-                <form>
-                    <div id="head2">
-                        <h>存钱</h>
-                    </div>
-                    <table>
-                        <td><label for="quantity">请输入存入的金额：</label></td>
-                        <td><input type="number" class="field form-control text-center" placeholder="amount"
-                                ng-model=""></td>
-                        <td>
-                            <button type="submit" class="btn btn-primary btn-md" ng-click="">submit</button>
-                        </td>
-                    </table>
-                </form>
+                <div id="head2"><h>存钱</h></div>
+                <table>
+                    <td><label for="quantity">请输入存入的金额：</label></td>
+                    <td><input type="number" class="field form-control text-center" placeholder="amount" ng-model="saveAmount"></td>
+                    <td><button type="submit" class="btn btn-primary btn-md" ng-click="saveMoney()">Submit</button></td>
+                </table>
             </div>
             <div id="right-bottom">
-                <form>
-                    <div id="head3">
-                        <h>转账</h>
-                    </div>
-                    <table>
-                        <tr>
-                            <td><label for="quantity">转账金额：</label></td>
-                            <td><input type="number" class="field form-control text-center" placeholder="amount"
-                                    ng-model=""></td>
-                            <td>
-                                <button type="submit" class="btn btn-primary btn-md" ng-click="">submit</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><label for="quantity" id="transfer">转入账号：</label></td>
-                            <td><input type="number" class="field form-control text-center" placeholder="payee account"
-                                    ng-model=""></td>
-                            <td>
-                                <button type="submit" class="btn btn-primary btn-md" ng-click="">submit</button>
-                            </td>
-                        </tr>
-                    </table>
-                </form>
+                <div id="head3"><h>转账</h></div>
+                <table>
+                    <tr>
+                        <td><label for="quantity">转账金额：</label></td>
+                        <td><input type="number" class="field form-control text-center" placeholder="amount" ng-model="tranAmount"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="quantity" id="transfer">转入账号：</label></td>
+                        <td><input type="text" class="field form-control text-center" placeholder="account" ng-model="tranAccount"></td>
+                        <td><button type="submit" class="btn btn-primary btn-md" ng-click="tranMoney()">Submit</button></td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
-    <div id="footer">
-        <p>With ❤ from <a href="https://www.ibm.com/linuxone">LinuxONE</a></p>
-    </div>
+    <div id="footer"><p>Made by Team Not Right Without Teamname.</a></p></div>
 </body>
 
+<script>
+    //主逻辑
+    const app=angular.module('scutbank',[]);
+    app.controller('mainController',($scope,$http)=>{
+        //部分展示信息初始化
+        $scope.accountShow='请登录';
+        $scope.balanceShow='暂无信息，请登录';
+
+        //Regist按钮动作
+        $scope.regist=()=>{
+
+        }
+
+        //Login按钮动作
+        $scope.login=()=>{
+            $scope.accountShow = '有反应';
+            $scope.balanceShow = '有反应';
+        }
+
+        //Log out按钮动作
+        $scope.logout=()=>{
+            $scope.accountShow = '请登录';
+            $scope.balanceShow = '暂无信息，请登录';
+        }
+
+        //存钱按钮动作
+        $scope.saveMoney=()=>{
+
+        }
+
+        //转账按钮动作
+        $scope.tranMoney=()=>{
+
+        }
+    });
+</script>
 
 </html>
