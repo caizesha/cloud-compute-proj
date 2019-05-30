@@ -18,6 +18,8 @@ angular.module('todoController', [])
 						$scope.login = {}; 
 						$scope.User= data;
 						$scope.iuser=data[0];
+					}).error(function(data){
+						alert('不存在此用户或密码不正确!');
 					});
 			}
 		};
