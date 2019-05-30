@@ -167,7 +167,7 @@
 
 <!-- SET THE CONTROLLER -->
 
-<body ng-app="scutbank" ng-controller="mainController">
+<body ng-controller="mainController">
     <script src="js/controllers/main.js"></script> <!-- load up our controller -->
     <script src="js/services/accountService.js"></script> <!-- load our todo service -->
     <script src="js/core.js"></script> <!-- load our main application -->
@@ -176,9 +176,9 @@
         <div class="logo">Bank of SCUT</div>
         <table class="account">
             <tr>
-                <td><input type="text" class="field form-control text-center" value="{{account}}" /></td>
+                <td><input type="text" class="field form-control text-center" value="{{accountshow}}" /></td>
                 <td>
-                    <button type="submit" class="btn btn-primary btn-lg" ng-click="">exit</button>
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="close()">exit</button>
                 </td>
             </tr>
         </table>
