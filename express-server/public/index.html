@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <!-- ASSIGN OUR ANGULAR MODULE -->
 <html ng-app="meanTodo">
-<script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script><!-- 加载angular -->
-<script src="js/controllers/main.js"></script> <!-- 加载controller -->
-<script src="js/services/todos.js"></script> <!-- 加载路由 -->
-<script src="js/core.js"></script> <!-- 加载main application -->
 
 <head>
     <meta charset="utf-8">
@@ -12,8 +8,6 @@
     <title>SCUT Banks</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
-    <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> -->
     <style>
         html {
             overflow-y: scroll;
@@ -155,6 +149,10 @@
             margin-bottom: 20px;
         }
     </style>
+    <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script><!-- 加载angular -->
+    <script src="js/controllers/main.js"></script> <!-- 加载controller -->
+    <script src="js/services/todos.js"></script> <!-- 加载路由 -->
+    <script src="js/core.js"></script> <!-- 加载main application -->
 </head>
 
 <body ng-controller="mainController">
@@ -171,12 +169,14 @@
         <hr /> <!-- 分割线 -->
         <div class="left">
             <div id="left-top">
+                <!-- 注册账户 -->
                 <tr><input type="text" class="field form-control text-center" placeholder="账户" ng-model="user.account"></tr>
                 <tr><input type="password" class="field form-control text-center" placeholder="密码" ng-model="user.password"></tr>
                 <tr><input type="text" class="field form-control text-center" placeholder="姓名" ng-model="user.name"></tr>
                 <button type="submit" class="btn btn-primary btn-lg" ng-click="register()">Regist</button>
             </div>
             <div id="left-bottom">
+                <!-- 登录账户 -->
                     <table>
                         <tr><input type="text" class="field form-control text-center" placeholder="账户" ng-model="login.account"></tr>
                         <tr><input type="password" class="field form-control text-center" placeholder="密码" ng-model="login.password"></tr>
@@ -186,13 +186,14 @@
         </div>
         <div class="right">
             <div id="right-top">
+                <!-- 显示账户余额 -->
                 <div id="head1"><h>账户余额</h></div>
                 <table>
                     <td><label for="quantity">您的余额为： {{iuser.balance}}</td>
                 </table>
             </div>
             <div id="right-middle">
-                <div id="head2"><h>存钱</h></div>
+                <div id="head2"><h>存/取款</h></div>
                 <table>
                     <tr>
                     <td><label for="quantity">请输入存入的金额：</label></td>

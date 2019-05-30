@@ -1,3 +1,4 @@
+/* eslint-disable */
 angular.module('todoController', [])
 
 	// inject the Todo service factory into our controller
