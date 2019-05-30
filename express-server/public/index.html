@@ -3,66 +3,256 @@
 <html ng-app="scutbank">
 
 <head>
-	<!-- META -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
-	<title>SCUT Bank</title>
-	<!-- SCROLLS -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-	<!-- load bootstrap -->
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-	<link rel="stylesheet" href="node_modules/sweetalert/dist/sweetalert.css">
-	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<script src="node_modules/sweetalert/dist/sweetalert.min.js"></script>
-	<style>
-		html {
-			overflow-y: scroll;
-		}
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+    <title>SCUT Bank</title>
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- load bootstrap -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <style>
+        html {
+            overflow-y: scroll;
+        }
 
-		body {
-			padding-top: 50px;
-		}
+        body {
+            background: url(img/bgi.jpg) no-repeat top left;
+            background-size: cover;
+        }
 
-		#todo-list {
-			margin-bottom: 30px;
-		}
+        .logo {
+            width: 900px;
+            height: 65px;
+            font-size: 60px;
+            font-family: 华文隶体;
+            text-shadow: 2px 2px 10px rgb(100, 117, 209);
+            color: rgb(10, 28, 61);
+            margin-left: 80px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
 
-		#todo-form {
-			margin-bottom: 50px;
-		}
-	</style>
-	<!-- SPELLS -->
-	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
-	<script src="js/services/routes.js"></script> <!-- load our todo service -->
-	<script src="js/core.js"></script> <!-- load our main application -->
+        #todo-list {
+            margin-bottom: 30px;
+        }
+
+        #todo-form {
+            margin-bottom: 20px;
+            margin-top: 10px;
+        }
+
+        .left {
+            float: left;
+            width: 30%;
+        }
+
+        #left-top {
+            width: 200px;
+            height: 50%;
+            line-height: 300px;
+            margin: 50px auto;
+        }
+
+        #left-bottom {
+            width: 200px;
+            height: 50%;
+            line-height: 300px;
+            margin: 110px auto;
+        }
+
+        .right {
+            float: right;
+            width: 70%;
+        }
+
+        #right-top {
+            width: 700px;
+            line-height: 50px;
+            margin: 50px auto;
+            border: 1px solid rgb(44, 130, 211);
+        }
+
+        #head1 {
+            width: 700px;
+            height: 40px;
+            line-height: 40px;
+            background: rgb(89, 145, 180);
+            text-align: center;
+            color: white;
+            font-size: 25px;
+        }
+
+        #right-middle {
+            width: 700px;
+            line-height: 50px;
+            margin: 50px auto;
+            border: 1px solid rgb(44, 130, 211);
+        }
+
+        #head2 {
+            width: 700px;
+            height: 40px;
+            line-height: 40px;
+            background: rgb(89, 145, 180);
+            text-align: center;
+            color: white;
+            font-size: 25px;
+        }
+
+        #right-bottom {
+            width: 700px;
+            line-height: 50px;
+            margin: 50px auto;
+            border: 1px solid rgb(44, 130, 211);
+        }
+
+        #head3 {
+            width: 700px;
+            height: 40px;
+            line-height: 40px;
+            background: rgb(89, 145, 180);
+            text-align: center;
+            color: white;
+            font-size: 25px;
+        }
+
+        .field {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            margin: 10px auto;
+            display: flex;
+            align-items: center;
+        }
+
+        hr {
+            margin-bottom: 20px;
+            border: 1px solid #285e8e;
+        }
+
+        table {
+            width: 700px;
+        }
+
+        td {
+            text-align: center;
+        }
+
+        #footer {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+    <!-- SPELLS -->
+    <script src="js/controllers/main.js"></script> <!-- load up our controller -->
+    <script src="js/services/accountService.js"></script> <!-- load our account service -->
+    <script src="js/core.js"></script> <!-- load our main application -->
+
 </head>
+
 <!-- SET THE CONTROLLER -->
 
+
 <body ng-controller="mainController">
-	<div class="container">
-		<!-- FORM TO CREATE ACCOUNTS -->
-		<div id="todo-form" class="row">
-			<div class="col-sm-8 col-sm-offset-2 text-center">
-				<form>
-					<div class="form-group">
-						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="account" ng-model="user.account">
-						<input type="password" class="form-control text-center" placeholder="password" ng-model="user.passwd">
-						<input type="text" class="form-control input-lg text-center" placeholder="name" ng-model="user.name">
-						<button type="submit" class="btn btn-primary btn-lg" ng-click="register()">register</button>
-					</div>
-					<!-- createToDo() WILL CREATE NEW TODOS -->
-					<input type="text" class="form-control input-lg text-center" placeholder="account" ng-model="user.account">
-					<input type="password" class="form-control text-center" placeholder="password" ng-model="user.passwd">
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="login()">login</button>
-				</form>
-			</div>
-		</div>
-		<div class="text-center text-muted">
-			<p>With ❤ from <a href="https://www.ibm.com/linuxone">LinuxONE</a></p>
-		</div>
-	</div>
-	<script src="//cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script><!-- load angular -->
+    <div class="logo">Bank of SCUT</div>
+    <div class="container" id="todo-form">
+        <hr />
+        <div class="left">
+            <div id="left-top">
+                <form>
+                    <table>
+                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
+                        <tr><input type="text" class="field form-control text-center" placeholder="account"
+                                ng-model="user.account"></tr>
+                        <tr><input type="password" class="field form-control text-center" placeholder="password"
+                                ng-model="user.passwd"></tr>
+                        <tr><input type="text" class="field form-control text-center" placeholder="name"
+                                ng-model="user.name"></tr>
+                    </table>
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="register()">register
+                    </button>
+                </form>
+            </div>
+            <div id="left-bottom">
+                <form>
+                    <table>
+                        <!-- createToDo() WILL CREATE NEW TODOS -->
+                        <tr><input type="text" class="field form-control text-center" placeholder="account"
+                                ng-model="user.account"></tr>
+                        <tr><input type="password" class="field form-control text-center" placeholder="password"
+                                ng-model="user.passwd"></tr>
+                    </table>
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="login()">login</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="right">
+            <div id="right-top">
+                <form>
+                    <div id="head1">
+                        <h>查询余额</h>
+                    </div>
+                    <table>
+                        <td><label for="quantity">请输入您的账号：</label></td>
+                        <td><input type="number" class="field form-control text-center" placeholder="account"
+                                ng-model=""></td>
+                        <td>
+                            <button type="submit" class="btn btn-primary btn-md" ng-click="">query</button>
+                        </td>
+                    </table>
+                </form>
+            </div>
+            <div id="right-middle">
+                <form>
+                    <div id="head2">
+                        <h>存钱</h>
+                    </div>
+                    <table>
+                        <td><label for="quantity">请输入存入的金额：</label></td>
+                        <td><input type="number" class="field form-control text-center" placeholder="amount"
+                                ng-model=""></td>
+                        <td>
+                            <button type="submit" class="btn btn-primary btn-md" ng-click="">submit</button>
+                        </td>
+                    </table>
+                </form>
+            </div>
+            <div id="right-bottom">
+                <form>
+                    <div id="head3">
+                        <h>转账</h>
+                    </div>
+                    <table>
+                        <tr>
+                            <td><label for="quantity">转账金额：</label></td>
+                            <td><input type="number" class="field form-control text-center" placeholder="amount"
+                                    ng-model=""></td>
+                            <td>
+                                <button type="submit" class="btn btn-primary btn-md" ng-click="">submit</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="quantity" id="transfer">转入账号：</label></td>
+                            <td><input type="number" class="field form-control text-center" placeholder="payee account"
+                                    ng-model=""></td>
+                            <td>
+                                <button type="submit" class="btn btn-primary btn-md" ng-click="">submit</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="footer">
+        <p>With ❤ from <a href="https://www.ibm.com/linuxone">LinuxONE</a></p>
+    </div>
+    <script src="//cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script><!-- load angular -->
 </body>
+
 
 </html>

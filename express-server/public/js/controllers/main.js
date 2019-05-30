@@ -1,7 +1,7 @@
 import swal from 'sweetalert';
 
 /* eslint-disable max-len */
-const app = angular.module('bankController', []);
+const app = angular.module('mainController', []);
 // inject the Todo service factory into our controller
 app.controller('mainController', ['$scope', '$http', 'Accounts', ($scope, $http, Accounts) => {
   $scope.formData = {};
