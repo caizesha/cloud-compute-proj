@@ -7,9 +7,6 @@ angular.module('todoService', [])
 			},
 			create: function (user) {
 				return $http.post('/api/todos', user);
-			},
-			delete: function (id) {
-				return $http.delete('/api/todos/' + id);
 			}
 		}
 	}]);
