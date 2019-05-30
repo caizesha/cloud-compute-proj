@@ -1,11 +1,17 @@
-angular.module('accountService', [])
+angular.module('scutbank', [])
     .factory('Accounts', ['$http', ($http) => {
       return {
         get: () => {
-          return $http.get('/api/accounts');
+          return $http.get('/api/getAccounts');
         },
         create: (user) => {
-          return $http.post('/api/accounts', user);
+          return $http.post('/api/regist', user);
+        },
+        login: (user) => {
+          return $http.post('/api/login', user);
+        },
+        trans: () => {
+          return $http.post('/api/trans');
         },
       };
     }]);

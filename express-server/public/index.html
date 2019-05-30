@@ -1,12 +1,13 @@
 <!doctype html>
 <!-- ASSIGN OUR ANGULAR MODULE -->
 <html ng-app="scutbank">
+<script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script><!-- load angular -->
 
 <head>
     <!-- META -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
-    <title>SCUT Bank</title>
+    <title>Node/Angular Todo App</title>
     <!-- SCROLLS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <!-- load bootstrap -->
@@ -22,15 +23,30 @@
         }
 
         .logo {
-            width: 900px;
+            width: 400px;
             height: 65px;
             font-size: 60px;
             font-family: 华文隶体;
             text-shadow: 2px 2px 10px rgb(100, 117, 209);
             color: rgb(10, 28, 61);
             margin-left: 80px;
-            margin-top: 20px;
+            margin-top: 0;
             font-weight: bold;
+            float: left;
+        }
+
+        #header {
+            width: 100%;
+            height: 100px;
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+
+        .account {
+            float: right;
+            width: 300px;
+            margin-top: 30px;
+            margin-right: 60px;
         }
 
         #todo-list {
@@ -39,7 +55,7 @@
 
         #todo-form {
             margin-bottom: 20px;
-            margin-top: 10px;
+            margin-top: 0;
         }
 
         .left {
@@ -147,30 +163,38 @@
         }
     </style>
     <!-- SPELLS -->
-    <script src="js/controllers/main.js"></script> <!-- load up our controller -->
-    <script src="js/services/accountService.js"></script> <!-- load our account service -->
-    <script src="js/core.js"></script> <!-- load our main application -->
-
 </head>
 
 <!-- SET THE CONTROLLER -->
 
-
 <body ng-controller="mainController">
-    <div class="logo">Bank of SCUT</div>
+    <script src="js/controllers/main.js"></script> <!-- load up our controller -->
+    <script src="js/services/accountService.js"></script> <!-- load our todo service -->
+    <script src="js/core.js"></script> <!-- load our main application -->
+
+    <div id="header">
+        <div class="logo">Bank of SCUT</div>
+        <table class="account">
+            <tr>
+                <td><input type="text" class="field form-control text-center" value="{{account}}" /></td>
+                <td>
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="">exit</button>
+                </td>
+            </tr>
+        </table>
+    </div>
     <div class="container" id="todo-form">
         <hr />
         <div class="left">
             <div id="left-top">
                 <form>
                     <table>
-                        <!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
                         <tr><input type="text" class="field form-control text-center" placeholder="account"
-                                ng-model="user.account"></tr>
+                                ng-model="account"></tr>
                         <tr><input type="password" class="field form-control text-center" placeholder="password"
-                                ng-model="user.passwd"></tr>
+                                ng-model="password"></tr>
                         <tr><input type="text" class="field form-control text-center" placeholder="name"
-                                ng-model="user.name"></tr>
+                                ng-model="name"></tr>
                     </table>
                     <button type="submit" class="btn btn-primary btn-lg" ng-click="register()">register
                     </button>
@@ -179,17 +203,15 @@
             <div id="left-bottom">
                 <form>
                     <table>
-                        <!-- createToDo() WILL CREATE NEW TODOS -->
                         <tr><input type="text" class="field form-control text-center" placeholder="account"
-                                ng-model="user.account"></tr>
+                                ng-model="account"></tr>
                         <tr><input type="password" class="field form-control text-center" placeholder="password"
-                                ng-model="user.passwd"></tr>
+                                ng-model="password"></tr>
                     </table>
                     <button type="submit" class="btn btn-primary btn-lg" ng-click="login()">login</button>
                 </form>
             </div>
         </div>
-
         <div class="right">
             <div id="right-top">
                 <form>
@@ -197,9 +219,8 @@
                         <h>查询余额</h>
                     </div>
                     <table>
-                        <td><label for="quantity">请输入您的账号：</label></td>
-                        <td><input type="number" class="field form-control text-center" placeholder="account"
-                                ng-model=""></td>
+                        <td><label for="quantity">您的余额为：</label></td>
+                        <td><input type="text" class="field form-control text-center" value="{{balance}}" /></td>
                         <td>
                             <button type="submit" class="btn btn-primary btn-md" ng-click="">query</button>
                         </td>
@@ -251,7 +272,6 @@
     <div id="footer">
         <p>With ❤ from <a href="https://www.ibm.com/linuxone">LinuxONE</a></p>
     </div>
-    <script src="//cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script><!-- load angular -->
 </body>
 
 
