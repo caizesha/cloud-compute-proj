@@ -1,6 +1,6 @@
-<!doctype html>
+<!DOCTYPE html>
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="scutbank">
+<html>
 <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script><!-- load angular -->
 
 <head>
@@ -167,7 +167,7 @@
 
 <!-- SET THE CONTROLLER -->
 
-<body ng-controller="mainController">
+<body ng-app="scutbank" ng-controller="mainController">
     <script src="js/controllers/main.js"></script> <!-- load up our controller -->
     <script src="js/services/accountService.js"></script> <!-- load our todo service -->
     <script src="js/core.js"></script> <!-- load our main application -->
