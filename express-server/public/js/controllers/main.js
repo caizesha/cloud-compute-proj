@@ -23,6 +23,10 @@ angular.module('todoController', [])
 		};
 		//用户点击登出账户
 		$scope.exit=function(){
+			if ($scope.iuser==undefined){
+				alert('兄弟，你还没登录呢');
+				return;
+			}
 			var dataForm = {
 				"account": undefined,
 				"password": undefined,
