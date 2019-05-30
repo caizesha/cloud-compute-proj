@@ -12,18 +12,19 @@ app.controller('mainController', ['$scope', '$http', 'Accounts', ($scope, $http,
       console.log($scope.user.account);
       console.log($scope.user.passwd);
       Accounts.create($scope.user)
-          .success((data) => {
-            $scope.user = {};
-          });
+        .success((data) => {
+          // $scope.user = {};
+          $scope.user.account = '';
+        });
     }
   };
   // 定义了点击注册按钮的动作
-  $scope.register = function() {
+  $scope.register = function () {
     if ($scope.user.account != undefined && $scope.user.passwd != undefined && $scope.user.name != undefined) {
       Accounts.create($scope.user)
-          .success((data) => {
-            $scope.formData = {};
-          });
+        .success((data) => {
+          $scope.formData = {};
+        });
     }
   };
 }]);
