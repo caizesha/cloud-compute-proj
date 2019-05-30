@@ -90,6 +90,9 @@ angular.module('todoController', [])
 		$scope.trans= function () {
 			if (($scope.trans_money!=undefined)&&($scope.trans_account!=undefined)) {
 				if ($scope.trans_money > $scope.iuser.balance) { alert("余额不足"); }
+				if ($scope.trans_money<0){
+					alert('金额不能为负数!');
+				}
 				else {
 					$scope.loading = true;
 					var dataForm = {
