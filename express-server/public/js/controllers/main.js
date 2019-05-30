@@ -16,7 +16,7 @@ angular.module('todoController', [])
 				Todos.create($scope.login)
 					// if successful creation, call our get function to get all the new todos
 					.success(function(data) {
-						$scope.loading = false;
+						alert('登录成功!');
 						$scope.login = {}; // clear the form so our user is ready to enter another
 						$scope.User= data; // assign our new list of todos
 						$scope.iuser=data[0];
@@ -30,9 +30,9 @@ angular.module('todoController', [])
 			if ($scope.user.account != undefined) {
 				// call the create function from our service (returns a promise object)
 				Todos.create($scope.user)
-
 					// if successful creation, call our get function to get all the new todos
 					.success(function(data) {
+						alert('注册账户成功!');
 						$scope.user = {}; // clear the form so our user is ready to enter another
 					});
 			}
@@ -45,7 +45,7 @@ angular.module('todoController', [])
 				// call the create function from our service (returns a promise object)
 				var dataForm={
 					"account":$scope.iuser.account,
-					"balance":$scope.iuser.balance+parseFloat($scope.deposit_money)
+					"balance":$scope.iuser.balance+parseFloat($scope.deposit_money);
 				};
 				Todos.create(dataForm)
 					// if successful creation, call our get function to get all the new todos
@@ -60,7 +60,9 @@ angular.module('todoController', [])
 			// validate the formData to make sure that something is there
 			// if form is empty, nothing will happen
 			if ($scope.withdraw_money != undefined) {
-				if($scope.withdraw_money>$scope.iuser.balance) {alert("余额不足")}
+				if($scope.withdraw_money>$scope.iuser.balance) {
+					alert("余额不足");
+				}
 				else{
 				// call the create function from our service (returns a promise object)
 				var dataForm={
