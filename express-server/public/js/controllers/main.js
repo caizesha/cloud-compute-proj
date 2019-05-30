@@ -15,8 +15,8 @@ angular.module('todoController', [])
 				Todos.create($scope.login)
 					.success(function(data) {
 						$scope.loading = false;
-						$scope.login = {}; // clear the form so our user is ready to enter another
-						$scope.User= data; // assign our new list of todos
+						$scope.login = {}; 
+						$scope.User= data;
 						$scope.iuser=data[0];
 					});
 			}
@@ -34,7 +34,7 @@ angular.module('todoController', [])
 				Todos.create($scope.user)
 					.success(function(data) {
 						$scope.loading = false;
-						$scope.user = {}; // clear the form so our user is ready to enter another
+						$scope.user = {};
 					});
 			}
 		};
@@ -54,7 +54,7 @@ angular.module('todoController', [])
 					.success(function(data) {
 						$scope.loading = false;
 						$scope.iuser=data[0];
-						$scope.deposit_money =undefined; // clear the form so our user is ready to enter another
+						$scope.deposit_money =undefined; 
 					});
 			}
 		};
@@ -79,7 +79,7 @@ angular.module('todoController', [])
 					.success(function(data) {
 						$scope.loading = false;
 						$scope.iuser=data[0];
-						$scope.withdraw_money =undefined; // clear the form so our user is ready to enter another
+						$scope.withdraw_money =undefined; 
 					});
 				}
 			}
@@ -87,7 +87,6 @@ angular.module('todoController', [])
 		//转账
 		$scope.trans= function () {
 			if (($scope.trans_money!=undefined)&&($scope.trans_account!=undefined)) {
-
 				if ($scope.trans_money > $scope.iuser.balance) { alert("余额不足"); }
 				else {
 					$scope.loading = true;
@@ -101,7 +100,7 @@ angular.module('todoController', [])
 						.success(function (data) {
 							$scope.loading = false;
 							$scope.iuser = data[0];
-							$scope.trans_money = undefined; // clear the form so our user is ready to enter another
+							$scope.trans_money = undefined; 
 							$scope.trans_account = undefined;
 						});
 				}
