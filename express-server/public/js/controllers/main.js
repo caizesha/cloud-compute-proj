@@ -36,7 +36,7 @@ angular.module('todoController', [])
 						$scope.trans_account = undefined;
 					});	
 			}
-		}
+		};
 		//注册
 		$scope.register = function() {
 			if ($scope.user.account != undefined) {
