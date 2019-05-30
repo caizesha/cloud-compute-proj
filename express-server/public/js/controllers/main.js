@@ -3,8 +3,6 @@ angular.module('todoController', [])
 	.controller('mainController', ['$scope','$http','Todos', function($scope, $http, Todos) {
 		$scope.formData = {};
 		$scope.loading = true;
-		$scope.iuser.name='请先登录';
-		$scope.iuser.balance='暂无信息';
 		Todos.get()
 			.success(function(data) {
 				$scope.todos = data;
