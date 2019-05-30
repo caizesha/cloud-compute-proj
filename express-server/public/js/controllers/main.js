@@ -1,15 +1,15 @@
-import swal from 'sweetalert';
 const app = angular.module('scutbank', []);
 /* eslint-disable max-len */
 app.controller('mainController', ['$scope', '$http', 'Accounts', ($scope, $http, Accounts) => {
   $scope.formData = {};
   // 定义了点击登录按钮的动作
   $scope.login = () => {
-    swal('成功', '登录账号成功', 'success');
+    console.log('正在登录');
     Accounts.login({})
         .success((data) => {
         // $scope.user = {};
           $scope.user.account = '';
+          console.log('登录成功');
         });
   };
   // 定义了点击注册按钮的动作
@@ -17,7 +17,7 @@ app.controller('mainController', ['$scope', '$http', 'Accounts', ($scope, $http,
     Accounts.create($scope.user)
         .success((data) => {
           $scope.formData = {};
-          swal('成功', '注册账号成功', 'success');
+          alert('注册账号成功');
         });
   };
   // 定义了点击存钱按钮的操作
