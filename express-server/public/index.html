@@ -4,13 +4,10 @@
 <script src="https://cdn.staticfile.org/angular.js/1.4.6/angular.min.js"></script><!-- load angular -->
 
 <head>
-    <!-- META -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>SCUT Banks</title>
-    <!-- SCROLLS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- load bootstrap -->
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <style>
         html {
@@ -162,10 +159,7 @@
             margin-bottom: 20px;
         }
     </style>
-    <!-- SPELLS -->
 </head>
-
-<!-- SET THE CONTROLLER -->
 
 <body ng-controller="mainController">
     <script src="js/controllers/main.js"></script> <!-- load up our controller -->
@@ -176,7 +170,8 @@
         <div class="logo">Bank of SCUT</div>
         <table class="account">
             <tr>
-                <td><input type="text" class="field form-control text-center" value="{{accountshow}}" /></td>
+                //登录账户后在这里展示
+                <td>{{accountShow}}</td>
                 <td>
                     <button type="submit" class="btn btn-primary btn-lg" ng-click="close()">exit</button>
                 </td>

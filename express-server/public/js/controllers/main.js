@@ -1,7 +1,8 @@
 const app = angular.module('scutbank', []);
 /* eslint-disable max-len */
-app.controller('mainController', ['$scope', '$http', 'Accounts', ($scope, $http, Accounts) => {
+app.controller('mainController', ($scope, $http, Accounts) => {
   $scope.formData = {};
+  $scope.accountShow = $scope.account;
   // 定义了点击登录按钮的动作
   $scope.login = () => {
     console.log('正在登录');
@@ -33,4 +34,4 @@ app.controller('mainController', ['$scope', '$http', 'Accounts', ($scope, $http,
     window.open('', '_self');
     window.close();
   };
-}]);
+});
