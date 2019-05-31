@@ -50,7 +50,7 @@ angular.module('todoController', [])
 				$scope.loading = true;
 				var dataForm={
 					"account":$scope.iuser.account,
-					"balance":$scope.iuser.balance+parseFloat($scope.deposit_money)
+					"deposit": parseFloat($scope.deposit_money)
 				};
 				Todos.create(dataForm)
 					.success(function(data) {
@@ -75,7 +75,7 @@ angular.module('todoController', [])
 				else{
 				var dataForm={
 					"account":$scope.iuser.account,
-					"balance":$scope.iuser.balance-parseFloat($scope.withdraw_money)
+					"withdraw":parseFloat($scope.withdraw_money),
 				};
 				Todos.create(dataForm)
 					.success(function(data) {
